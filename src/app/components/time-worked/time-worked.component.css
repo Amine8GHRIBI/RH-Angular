@@ -1,0 +1,23 @@
+.bloc { 
+    word-wrap: break-word;
+}
+
+.container {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #405065;
+}
+  
+.search-hero {
+    max-width: max-content;
+    padding-bottom: 0px;
+    margin:0px;
+    min-width: max-content;
+}
+  
+.form-control {
+    box-shadow: 0 10px 40px 0 #B0C1D9;
+}
+.form-control::placeholder  {
+    font-family: FontAwesome;
+}

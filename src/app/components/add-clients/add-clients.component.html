@@ -1,0 +1,98 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
+                                class="fa fa-arrow-left"></i></a> Add Clients</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item">Clients</li>
+                        <li class="breadcrumb-item active">Add Client</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-12 text-right">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card" style="padding-left: 8px;">
+                    <br>
+                    <div class="add-course">
+                        <form [formGroup]="form" method="POST" (ngSubmit)="post_client()"
+                            enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>First name</label>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required placeholder="Fisrt name *"
+                                            formControlName="first_name">
+                                    </div>
+                                </div>
+                                <div *ngIf="form.get('first_name').touched && form.get('first_name').invalid">
+                                    <small *ngIf="form.get('first_name').errors?.required"
+                                        class="text-danger">First_name
+                                        is required</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last name</label>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required placeholder="Last Name *"
+                                            formControlName="last_name">
+                                    </div>
+                                </div>
+                                <div *ngIf="form.get('last_name').touched && form.get('last_name').invalid">
+                                    <small *ngIf="form.get('last_name').errors?.required" class="text-danger">Last_name
+                                        is required</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Grade</label>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required placeholder="Grade"
+                                            formControlName="grade">
+                                    </div>
+                                </div>
+                                <div *ngIf="form.get('grade').touched && form.get('grade').invalid">
+                                    <small *ngIf="form.get('grade').errors?.required" class="text-danger">Grade is
+                                        required</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>company</label>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required placeholder="Company"
+                                            formControlName="company">
+                                    </div>
+                                </div>
+                                <div *ngIf="form.get('company').touched && form.get('company').invalid">
+                                    <small *ngIf="form.get('company').errors?.required" class="text-danger">Company is
+                                        required</small>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="mt-4">
+                                    <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Add</button>
+                                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                                <br><br>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>

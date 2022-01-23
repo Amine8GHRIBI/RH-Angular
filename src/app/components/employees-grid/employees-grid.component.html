@@ -1,0 +1,65 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
+                                class="fa fa-arrow-left"></i></a> Clients</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item">Clients</li>
+                        <li class="breadcrumb-item active">List</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12 text-right">
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                            autocomplete="off" placeholder="&#61442;  Start searching">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header" style="width: 75%; display: inline-block;">
+            <h2>Employee Grid</h2>
+        </div>
+        <div style="width: 25%; display: inline-block;">
+            <a [routerLink]="['/add-employee']">
+                <button type="button" class="btn btn-info" style="font-size: 15px;">
+                    <i class="fa fa-plus-square"></i>
+                    <span> Add Employee </span>
+                </button>
+            </a>
+            <a [routerLink]="['/employees-grid']" class="btn btn-info" style="margin-left: 5%;"><i class="icon-grid"
+                    style="font-size: 17px;"></i></a>
+            <a [routerLink]="['/employees-list']" class="btn btn-info" style="margin-left: 1%;"><i class="icon-list"
+                    style="font-size: 17px;"></i></a>
+        </div>
+
+        <div class="row clearfix" style="margin-top: 6px;">
+            <div *ngFor="let employee of employees | filter:searchText">
+                <div class=".col-md-6 .offset-md-3 col-lg-12 ">
+                    <div class="card" style="min-width: 185px;">
+                        <div class="body text-center">
+                            <div class="chart easy-pie-chart-1" data-percent="75"> <span><img
+                                        src="../../assets/images/sm/avatar2.jpg" alt="user"
+                                        class="rounded-circle" /></span> </div>
+                            <h5>{{ employee.first_name }}</h5>
+                            <small>{{ employee.last_name }}</small>
+                            <h6>{{ employee.email }}</h6>
+                            <div class="m-t-15">
+                                <a href="project-detail.html" class="btn btn-sm btn-outline-primary"
+                                    [routerLink]="['/profile/'+employee.employee_id]"><i class="icon-eye"></i></a>
+                                <a [routerLink]="['/employee-calendar/'+employee.employee_id]"
+                                    class="btn btn-sm btn-outline-success"><i class="icon-calendar"></i></a>
+                                <a class="btn btn-sm btn-outline-danger js-sweetalert"
+                                    (click)=" deleteEmployee(employee.employee_id)" title="Delete"
+                                    data-type="confirm"><i class="icon-trash"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

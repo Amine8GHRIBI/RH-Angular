@@ -1,0 +1,129 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
+                                class="fa fa-arrow-left"></i></a> Create New Project</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item">Projects</li>
+                        <li class="breadcrumb-item active">Add Project</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-12 text-right">
+
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <br>
+                <div class="add-course">
+                    <form [formGroup]="form" method="POST" (ngSubmit)="post_project()" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <textarea rows="2" formControlName="title" aria-describedby="title"
+                                placeholder="Enter Title" class="form-control" required>
+                            </textarea>
+                            <div *ngIf="form.get('title').touched && form.get('title').invalid">
+                                <small *ngIf="form.get('title').errors?.required" class="text-danger">Title
+                                    is required</small>
+                                <small *ngIf="form.get('title').errors?.maxlength" class="text-danger">Title
+                                    must be at most 50 characters</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea rows="6" formControlName="description" aria-describedby="Description"
+                                placeholder="Enter Description" class="form-control" required>
+                            </textarea>
+                            <div *ngIf="form.get('description').touched && form.get('description').invalid">
+                                <small *ngIf="form.get('description').errors?.required" class="text-danger">Description
+                                    is required</small>
+                                <small *ngIf="form.get('description').errors?.maxlength" class="text-danger">Description
+                                    must be at most 400 characters</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date </label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Date debut" name="datedebut"
+                                    [(ngModel)]="model1" ngbDatepicker #datedebut="ngbDatepicker"
+                                    formControlName="datedebut">
+                                <div class="input-group-append" style="background-color: white;">
+                                    <button class="btn btn-outline-secondary calendar" (click)="datedebut.toggle()"
+                                        type="button"><i class="icon-calendar"></i></button>
+                                </div>
+                            </div>
+                            <div *ngIf="form.get('datedebut').touched && form.get('datedebut').invalid">
+                                <small *ngIf="form.get('datedebut').errors?.required" class="text-danger">datedebut
+                                    is
+                                    required</small>
+                                <small *ngIf="form.get('datedebut').errors?.maxlength" class="text-danger">datedebut
+                                    must
+                                    be at most 50 characters</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Deadline </label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Date fin" name="datefin" [(ngModel)]="model2"
+                                    ngbDatepicker #datefin="ngbDatepicker" formControlName="datefin">
+                                <div class="input-group-append" style="background-color: white;">
+                                    <button class="btn btn-outline-secondary calendar" (click)="datefin.toggle()"
+                                        type="button"><i class="icon-calendar"></i></button>
+                                </div>
+                            </div>
+                            <div *ngIf="form.get('datefin').touched && form.get('datefin').invalid">
+                                <small *ngIf="form.get('datefin').errors?.required" class="text-danger">datefin
+                                    is
+                                    required</small>
+                                <small *ngIf="form.get('datefin').errors?.maxlength" class="text-danger">datefin
+                                    must
+                                    be at most 50 characters</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Client</label>
+                            <input type="text" formControlName="client" aria-describedby="client"
+                                placeholder="Enter client" class="form-control" required>
+                            <div *ngIf="form.get('client').touched && form.get('client').invalid">
+                                <small *ngIf="form.get('client').errors?.required" class="text-danger">client is
+                                    required</small>
+                                <small *ngIf="form.get('client').errors?.maxlength" class="text-danger">client must
+                                    be at most 1500 characters</small>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label>Project Image</label>
+                            <div class="col-md-4">
+                                <input type="file" name="projectImage" (change)="onImageChange($event)" accept="image/*" class="form-control-file" required>
+                            </div>
+                            <div *ngIf="form.get('projectImage').touched && form.get('projectImage').invalid">
+                                <small *ngIf="form.get('projectImage').errors?.required" class="text-danger">Image is required</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>PDF Project</label>
+                            <div class="col-md-4">
+                                <input type="file" name="pdfProject" (change)="onPdfChange($event)" accept=".pdf" class="form-control-file" required>
+                            </div>
+                            <div *ngIf="form.get('pdfProject').touched && form.get('pdfProject').invalid">
+                                <small *ngIf="form.get('pdfProject').errors?.required" class="text-danger">PDF Project is required</small>
+                            </div>
+                        </div>-->
+                        <div class="col-sm-12">
+                            <div class="mt-4">
+                                <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Create</button>
+                                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                            </div>
+                            <br><br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

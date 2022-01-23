@@ -1,0 +1,73 @@
+<div id="main-content" class="profilepage_1">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
+                                class="fa fa-arrow-left"></i></a> Project Details</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item">Projects</li>
+                        <li class="breadcrumb-item active">Project Details</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12 text-right">
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                            autocomplete="off"
+                            placeholder="&#61442;  Start searching">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Section: Block Content-->
+        <section class="mb-5">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-12 offset-md-2">
+                    <div class="card" style="padding: 2%; padding-left: 4%; text-align:center;">
+                        <div style="text-align:center">
+                            <h1><strong>{{project?.title}}</strong></h1>
+                        </div>
+                        <h3><strong>Description: </strong> </h3>
+                        <h3 class="project-title text-primary mb-3">{{project?.description}}</h3>
+                        <h3><strong>Date debut :</strong>{{project?.datedebut}}</h3>
+                        <h3><strong>Deadline :</strong> {{project?.datefin}}</h3>
+                        <h3><strong>Client :</strong> {{project?.client}}</h3>
+                        <h3 *ngIf="isAppManager() || isAppAdmin()">
+                            <button mat-button (click)="openDialog()"><i class="fa fa-user-plus" style="font-size: 2em !important;"></i></button>
+                        </h3>
+                        <br>
+                        <h5 class="mb-0 mr-2"><strong>Team : </strong></h5>
+                        <div class="row clearfix">
+                            <div *ngFor="let employee of employees | filter:searchText">
+                                <div class=".col-md-6 .offset-md-3 col-lg-12 " style="padding-left: 7px; padding-right: 7px; margin-left: 2px; margin-right: 2px;">
+                                    <div class="card" style="min-width: 175px;">
+                                        <div class="body text-center">
+                                            <div class="chart easy-pie-chart-1" data-percent="75"> <span><img
+                                                        src="../../assets/images/sm/avatar2.jpg" alt="user"
+                                                        class="rounded-circle" /></span> </div>
+                                            <h5>{{ employee.first_name }}</h5>
+                                            <small>{{ employee.last_name }}</small>
+                                            <h6>{{ employee.email }}</h6>
+                                            <div *ngIf="isAppManager() || isAppAdmin()">
+                                                <a class="btn btn-sm btn-outline-danger js-sweetalert"
+                                                    (click)="deleteProjectEmployee(employee.employee_id)" title="Delete"
+                                                    data-type="confirm"><i class="icon-trash"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="m-t-15" *ngIf="isAppManager() || isAppAdmin()">
+                            <a [routerLink]="['/project-calendar/'+project.id]"
+                                class="btn btn-sm btn-outline-primary"><i class="icon-calendar"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 offset-md-3"></div>
+            </div>
+        </section>
+    </div>
+</div>

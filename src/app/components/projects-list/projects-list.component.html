@@ -1,0 +1,115 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
+                                class="fa fa-arrow-left"></i></a> Projects List</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item">Projects</li>
+                        <li class="breadcrumb-item active">Projects List</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12 text-right">
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                            autocomplete="off" placeholder="&#61442;  Start searching">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header" style="width: 78%; display: inline-block;">
+            <h2>Projects List</h2>
+        </div>
+        <div style="width: 22%; display: inline-block; margin-bottom: 20px;">
+            <span *ngIf="isAppManager() || isAppAdmin()">
+                <a [routerLink]="['/add-projects']">
+                    <button type="button" class="btn btn-info" style="font-size: 15px;">
+                        <i class="fa fa-plus-square"></i>
+                        <span> Add Project </span>
+                    </button>
+                </a>
+            </span>
+            <a [routerLink]="['/projects-grid']" class="btn btn-info" style="margin-left: 5%;"><i class="icon-grid"
+                    style="font-size: 17px;"></i></a>
+            <a [routerLink]="['/projects-list']" class="btn btn-info" style="margin-left: 1%;"><i class="icon-list"
+                    style="font-size: 17px;"></i></a>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="body project_report">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example dataTable table-custom m-b-0"
+                                style="text-align: center;">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Deadline</th>
+                                        <th>Prograss</th>
+                                        <th>Lead</th>
+                                        <th>Team</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let project of projects | filter:searchText">
+                                        <td class="project-title" style="text-align: left;">
+                                            <h6>{{ project?.title }}</h6>
+                                            <small>Created {{ project?.datedebut }}</small>
+                                        </td>
+                                        <td>{{project?.datefin}}</td>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="48"
+                                                    aria-valuemin="0" aria-valuemax="100"
+                                                    [style.width.%]="project?.progress"></div>
+                                            </div>
+                                            <small>Completion with: {{ project?.progress }}%</small>
+                                        </td>
+                                        <td><img src="../../assets/images/xs/avatar1.jpg" data-toggle="tooltip"
+                                                data-placement="top" title="Team Lead" alt="Avatar"
+                                                class="width35 rounded"></td>
+                                        <td>
+                                            <ul class="list-unstyled team-info">
+                                                <li><img src="../../assets/images/xs/avatar1.jpg" data-toggle="tooltip"
+                                                        data-placement="top" title="Avatar" alt="Avatar"></li>
+                                                <li><img src="../../assets/images/xs/avatar2.jpg" data-toggle="tooltip"
+                                                        data-placement="top" title="Avatar"></li>
+                                                <li><img src="../../assets/images/xs/avatar3.jpg" data-toggle="tooltip"
+                                                        data-placement="top" title="Avatar"></li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-success"
+                                                *ngIf="project.status == 'finished'">Finished</span>
+                                            <span class="badge badge-warning" *ngIf="project.status == 'in_progress'">In
+                                                Progress</span>
+                                            <span class="badge badge-danger" *ngIf="project.status == 'not_started'">Not
+                                                Started</span>
+                                        </td>
+                                        <td class="project-actions">
+                                            <a class="btn btn-sm btn-outline-primary"
+                                                [routerLink]="['/projects-detail/'+project.id]"><i
+                                                    class="icon-eye"></i></a>
+                                            <!--<a class="btn btn-sm btn-outline-success"><i class="icon-pencil"></i></a>-->
+                                            <span *ngIf="isAppManager() || isAppAdmin()">
+                                                <a [routerLink]="['/project-calendar/'+project.id]"
+                                                    class="btn btn-sm btn-outline-success"><i class="icon-calendar"></i></a>
+                                                <a class="btn btn-sm btn-outline-danger js-sweetalert"
+                                                    (click)="deleteProject(project.id)" title="Delete"
+                                                    data-type="confirm"><i class="icon-trash"></i></a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

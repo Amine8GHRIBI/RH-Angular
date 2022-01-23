@@ -1,0 +1,58 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
+                                class="fa fa-arrow-left"></i></a> Dashboard</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item active">Time Worked</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-12 text-right">
+
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row clearfix">
+            <div class="col-lg-2 col-md-12"></div>
+            <div class="col-lg-8 col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <div class="col-lg-8 col-md-12" style="display: inline-block;">
+                            <h2 style="width: max-content;">Projects Time Worked</h2>
+                        </div>
+                        <div class="col-lg-4 col-md-12" style="display: inline-block;">
+                            <div class="search-hero">
+                                <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                                    autocomplete="off" placeholder="&#61442;  Start searching">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table m-b-0 table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Application</th>
+                                        <th>Client</th>
+                                        <th>Taux</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let project of myProjects | filter:searchText">
+                                        <td>{{ project?.title }}</td>
+                                        <td>{{ project?.client }}</td>
+                                        <td>{{ project.time.days }} j {{ project.time.hours }}h </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

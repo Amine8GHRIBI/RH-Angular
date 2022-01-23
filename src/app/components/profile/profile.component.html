@@ -1,0 +1,70 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">                        
+                    <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Client Detail</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>                            
+                        <li class="breadcrumb-item">Clients</li>
+                        <li class="breadcrumb-item active">Client Detail</li>
+                    </ul>
+                </div>            
+               
+            </div>
+        </div>
+        
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card client-detail">
+                    <div class="body">
+                        <div class="profile-image">
+                            <img src="../assets/images/user.png" alt="">
+                        </div>
+                        <div class="details">
+                            <h4 class="m-t-0 m-b-0"><strong>{{employee?.first_name}}</strong></h4>
+                            <span class="job_post">{{employee?.last_name}}</span>
+                            <p>{{employee?.email}}</p>
+                                                           
+                            <div class="m-t-15">
+                                
+                                <a [routerLink]="['/employee-calendar/'+employee.employee_id]"
+                                        class="btn btn-primary"><i class="icon-calendar"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let project of projects | filter:searchText">
+                <div class="card">
+                    
+                    <div class="body">
+                        <h6 class="m-b-15"><span> <a [routerLink]="['/projects-detail/'+project.id]">{{project?.title}}</a></span></h6>                                
+                        <p>{{project?.description}}</p>
+                        <ul class="list-unstyled team-info m-t-20">
+                            <li class="m-r-15"><small class="text-muted">Team</small></li>
+                            <li><img src="../assets/images/xs/avatar1.jpg" title="Avatar" alt="Avatar"></li>
+                            <li><img src="../assets/images/xs/avatar2.jpg" title="Avatar" alt="Avatar"></li>
+                            <li><img src="../assets/images/xs/avatar3.jpg" title="Avatar" alt="Avatar"></li>
+                            <li><img src="../assets/images/xs/avatar4.jpg" title="Avatar" alt="Avatar"></li>
+                            <li><img src="../assets/images/xs/avatar5.jpg" title="Avatar" alt="Avatar"></li>
+                        </ul>
+                        <div class="progress progress-xs progress-transparent custom-color-blue">
+                            <div class="progress-bar" data-transitiongoal="87"></div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-5">
+                                <div class="sparkline text-right m-t-10" data-type="bar" data-width="97%" data-height="26px" data-bar-Width="2" data-bar-Spacing="7" data-bar-Color="#7460ee"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            
+        </div>
+    </div>
+</div>

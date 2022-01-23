@@ -1,0 +1,100 @@
+<div id="left-sidebar" class="sidebar">
+    <div class="sidebar-scroll">
+        <div class="user-account">
+            <div class="dropdown">
+                <span>Welcome,</span>
+                <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong><span
+                            *ngIf="securityService.kc.authenticated">
+                            {{securityService.kc.tokenParsed.name}}
+                        </span></strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right account animated flipInY">
+                    <li><a [routerLink]="['/profile/'+securityService.kc.subject]"><i class="icon-user"></i>My
+                            Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a (click)="onChangePassword()"><i class="icon-settings"></i>Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a (click)="onLogout()"><i class="icon-power"></i>Logout</a></li>
+                </ul>
+            </div>
+            <hr>
+            <span *ngIf="securityService.kc.authenticated">
+                {{securityService.kc.tokenParsed.email}}
+            </span>
+            <div class="row">
+                <div class="col-4">
+                    <h6>
+                        <!--5+-->
+                    </h6>
+                    <small>
+                        <!--Experience-->
+                    </small>
+                </div>
+                <div class="col-4">
+                    <h6>
+                        <!--400+-->
+                    </h6>
+                    <small>
+                        <!--Employees-->
+                    </small>
+                </div>
+                <div class="col-4">
+                    <h6>
+                        <!--80+-->
+                    </h6>
+                    <small>
+                        <!--Clients-->
+                    </small>
+                </div>
+            </div>
+        </div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item" *ngIf="isAppEmployee() || isAppAdmin()"><a class="nav-link active" data-toggle="tab"
+                    href="#hr_menu">Employee Menu</a></li>
+            <li class="nav-item" *ngIf="isAppManager() || isAppAdmin()"><a class="nav-link active" data-toggle="tab"
+                    href="#project_menu">Admin Menu</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content p-l-0 p-r-0">
+            <div class="tab-pane animated fadeIn active" id="hr_menu" *ngIf="isAppEmployee() || isAppAdmin()">
+                <nav class="sidebar-nav">
+                    <ul class="main-menu metismenu">
+                        <li><a [routerLink]="['/employee-dashboard']"><i
+                                    class="icon-speedometer"></i><span>Dashboard</span></a></li>
+                        <!--<li><a [routerLink]="['/holidays']"><i class="icon-list"></i>Holidays</a></li>-->
+                        <li><a [routerLink]="['/my-calendar/'+securityService.kc.subject]"><i
+                                    class="icon-calendar"></i>Calendar</a></li>
+                        <li>
+                            <a [routerLink]="['/projects-list']"><i class="icon-list"></i><span>Projects</span></a>
+                        </li>
+                        <!--<li><a [routerLink]="['/taskboard']"><i class="icon-tag"></i>Taskboard</a></li>-->
+                        <li><a [routerLink]="['/team']"><i class="icon-users"></i>Team</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="tab-pane animated fadeIn active" id="project_menu" *ngIf="isAppManager() || isAppAdmin()">
+                <nav class="sidebar-nav">
+                    <ul class="main-menu metismenu">
+                        <li><a [routerLink]="['/admin-dashboard']"><i
+                                    class="icon-speedometer"></i><span>Dashboard</span></a></li>
+                        <li><a [routerLink]="['/my-calendar/'+securityService.kc.subject]"><i
+                                    class="icon-calendar"></i>My Calendar</a></li>
+                        <li><a [routerLink]="['/admin-calendar']"><i class="icon-calendar"></i>Admin Calendar</a></li>
+                        <li>
+                            <a [routerLink]="['/employees-list']"><i class="icon-users"></i><span>Employees</span></a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/projects-list']"><i class="icon-list"></i><span>Projects</span></a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/clients']"><i class="icon-user"></i><span>Clients</span></a>
+                        </li>
+                        <li><a [routerLink]="['/team']"><i class="icon-users"></i>Teams</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

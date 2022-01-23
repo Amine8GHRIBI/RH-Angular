@@ -1,0 +1,72 @@
+<mat-dialog-content class="mat-typography">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="container">
+                <h1 style="color: #595959; font-weight: 600;">Add Employees in this Project</h1>
+                <div class="row">
+                    <div class="search-hero">
+
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                            autocomplete="off"
+                            placeholder="&#61442;  Start searching">
+                    </div>
+                    <form [formGroup]="form" method="POST" enctype="multipart/form-data">
+                        <table class="table table-striped" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Date debut mission</th>
+                                    <th>Date fin mission</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let employee of employees | filter:searchText">
+                                    <td>{{employee.first_name}}</td>
+                                    <td>{{employee.last_name}}</td>
+                                    <td>{{employee.email}}</td>
+                                    <td>
+                                        <div class="form-group" style="display: inline-block; padding: 0%; margin: 0%;">
+                                            <div class="input-group">
+                                                <input class="form-control" placeholder="Date debut" name="datedebut"
+                                                    ngbDatepicker #datedebut="ngbDatepicker"
+                                                    formControlName="datedebut">
+                                                <div class="input-group-append" style="background-color: white;">
+                                                    <button class="btn btn-outline-secondary calendar"
+                                                        (click)="datedebut.toggle()" type="button"><i
+                                                            class="icon-calendar"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="display: inline-block; padding: 0%; margin: 0%;">
+                                            <div class="input-group">
+                                                <input class="form-control" placeholder="Date fin" name="datefin"
+                                                    ngbDatepicker #datefin="ngbDatepicker" formControlName="datefin">
+                                                <div class="input-group-append" style="background-color: white;">
+                                                    <button class="btn btn-outline-secondary calendar"
+                                                        (click)="datefin.toggle()" type="button"><i
+                                                            class="icon-calendar"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><a class="btn btn-sm btn-outline-danger js-sweetalert"
+                                            (click)="postAffectation(employee.employee_id,securityService.kc.subject,'2',datedebut._inputValue,datefin._inputValue)"
+                                            title="Affectation" data-type="confirm"><i
+                                                class="material-icons">note_add</i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Return</button>
+</mat-dialog-actions>

@@ -1,0 +1,14 @@
+.container {
+    color: #007bff;
+}
+
+.search-hero {
+    margin:0;
+}
+
+.form-control::placeholder  {
+    font-family: FontAwesome;
+    color: #6c757d;
+}
+
+#redbar { margin-left: auto; margin-right:auto; }
